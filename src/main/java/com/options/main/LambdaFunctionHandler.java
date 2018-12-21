@@ -18,7 +18,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -44,8 +43,6 @@ public class LambdaFunctionHandler implements RequestHandler<Object, String> {
 
     private static List<Option> options;
     private static List<OptionMetadata> optionsMetadata;
-
-
 
 
 
@@ -110,13 +107,13 @@ public class LambdaFunctionHandler implements RequestHandler<Object, String> {
         try {
             if(!options.isEmpty())
                 DBService.saveBatch(options, "stock_option_eod");
-        } catch (SQLException e) {
+        } catch (Exception e) {
             logger.log("An exception occurred while saving options batch: " + e);
         }
         try {
             if(!optionsMetadata.isEmpty())
-                DBService.saveBatch(optionsMetadata, "option_metadata");
-        } catch (SQLException e) {
+                DBService.saveMetadataBatch(optionsMetadata);
+        } catch (Exception e) {
             logger.log("An exception occurred while saving options metadata batch: " + e);
         }
 
