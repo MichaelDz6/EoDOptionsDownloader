@@ -29,7 +29,7 @@ public class DBService {
 
     public static <T> void saveMetadataBatch(List<OptionMetadata> values) {
 
-        String sql = "INSERT INTO \"option_metadata\" VALUES (?,?,?,?,?,?,?,?) ON CONFLICT DO NOTHING";
+        String sql = "INSERT INTO \"option_metadata\" VALUES (?,?,?,?,?,?,?,?,?) ON CONFLICT DO NOTHING";
         jdbcTemplate.batchUpdate(sql, new BatchPreparedStatementSetter() {
             @Override
             public void setValues(PreparedStatement ps, int i) throws SQLException {
@@ -42,6 +42,7 @@ public class DBService {
                 ps.setDate(6, new java.sql.Date(option.getExpiration_date().getTime()));
                 ps.setString(7, option.getCurrency());
                 ps.setString(8, option.getContract_size());
+                ps.setDate(9, new java.sql.Date(option.getLast_trade_date().getTime()));
             }
 
             @Override
