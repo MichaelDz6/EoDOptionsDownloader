@@ -19,7 +19,6 @@ public class Option {
     private Integer open_interest;
     private Boolean in_the_money;
     private Double implied_volatility;
-    private Date last_trade_date;
 
     public Option() {
     }
@@ -33,9 +32,7 @@ public class Option {
             @JsonProperty("ask") Double ask,
             @JsonProperty("volume") Integer volume,
             @JsonProperty("openInterest") Integer open_interest,
-            @JsonProperty("impliedVolatility") Double implied_volatility,
-            @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
-            @JsonProperty("lastTradeDateTime") Date last_trade_date) {
+            @JsonProperty("impliedVolatility") Double implied_volatility) {
         this.name = name;
         this.last_price = last_price;
         this.bid = bid;
@@ -43,7 +40,6 @@ public class Option {
         this.volume = volume;
         this.open_interest = open_interest;
         this.implied_volatility = implied_volatility;
-        this.last_trade_date = last_trade_date;
     }
 
     public Date getDate() {
@@ -110,13 +106,6 @@ public class Option {
         this.implied_volatility = implied_volatility;
     }
 
-    public Date getLast_trade_date() {
-        return last_trade_date;
-    }
-
-    public void setLast_trade_date(Date last_trade_date) {
-        this.last_trade_date = last_trade_date;
-    }
 
     public Boolean getIn_the_money() {
         return in_the_money;
@@ -139,7 +128,7 @@ public class Option {
                 ", open_interest=" + open_interest +
                 ", in_the_money=" + in_the_money +
                 ", implied_volatility=" + implied_volatility +
-                ", last_trade_date=" + last_trade_date +
                 '}';
     }
+
 }

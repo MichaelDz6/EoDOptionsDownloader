@@ -18,6 +18,7 @@ public class OptionMetadata {
     private Date expiration_date;
     private String currency;
     private String contract_size;
+    private Date last_trade_date;
 
 
     public OptionMetadata(){}
@@ -30,13 +31,39 @@ public class OptionMetadata {
             @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
             @JsonProperty("expirationDate") Date expiration_date,
             @JsonProperty("currency") String currency,
-            @JsonProperty("contractSize") String contract_size) {
+            @JsonProperty("contractSize") String contract_size,
+            @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+            @JsonProperty("lastTradeDateTime") Date last_trade_date) {
         this.contract_name = contract_name;
         this.type = type;
         this.strike = strike;
         this.expiration_date = expiration_date;
         this.currency = currency;
         this.contract_size = contract_size;
+        this.last_trade_date = last_trade_date;
+    }
+
+    @Override
+    public String toString() {
+        return "OptionMetadata{" +
+                "contract_name='" + contract_name + '\'' +
+                ", stock='" + stock + '\'' +
+                ", exchange='" + exchange + '\'' +
+                ", type='" + type + '\'' +
+                ", strike=" + strike +
+                ", expiration_date=" + expiration_date +
+                ", currency='" + currency + '\'' +
+                ", contract_size='" + contract_size + '\'' +
+                ", last_trade_date=" + last_trade_date +
+                '}';
+    }
+
+    public Date getLast_trade_date() {
+        return last_trade_date;
+    }
+
+    public void setLast_trade_date(Date last_trade_date) {
+        this.last_trade_date = last_trade_date;
     }
 
     public String getContract_name() {
@@ -103,17 +130,4 @@ public class OptionMetadata {
         this.contract_size = contract_size;
     }
 
-    @Override
-    public String toString() {
-        return "OptionMetadata{" +
-                "contract_name='" + contract_name + '\'' +
-                ", stock='" + stock + '\'' +
-                ", exchange='" + exchange + '\'' +
-                ", type='" + type + '\'' +
-                ", strike=" + strike +
-                ", expiration_date=" + expiration_date +
-                ", currency='" + currency + '\'' +
-                ", contract_size='" + contract_size + '\'' +
-                '}';
-    }
 }

@@ -29,7 +29,7 @@ public class DBService {
 
     public static <T> void saveMetadataBatch(List<OptionMetadata> values) {
 
-        String sql = "INSERT INTO VALUES \"option_metadata\" (?,?,?,?,?,?,?,?) ON CONFLICT DO NOTHING";
+        String sql = "INSERT INTO \"option_metadata\" VALUES (?,?,?,?,?,?,?,?) ON CONFLICT DO NOTHING";
         jdbcTemplate.batchUpdate(sql, new BatchPreparedStatementSetter() {
             @Override
             public void setValues(PreparedStatement ps, int i) throws SQLException {
